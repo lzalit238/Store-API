@@ -10,20 +10,36 @@ const mongoose = require('mongoose')
 
 const ProductSchema = new mongoose.Schema({
     name: {
-        type:String,
-        required:[true, "Name must be entered"],
+        type: String,
+        required: [true, "Name must be entered"],
         trim: true,
-        maxlength:[40, "Name cannot be more than 40 characters"]
+        maxlength: [40, "Name cannot be more than 40 characters"],
     },
-    category: {
+    price: {
+        type: Number,
+        required: [true, "Shoe must have a price"],
+        trim: true,
+    },
+    featured: {
+        type: Boolean,
+        default: false,
+    },
+    rating: {
+        type: Number,
+        required: [true, "Must have rating"]
+    },
+    createdAt: {
+        type: Date,
+        default: new Date().toISOString(),
+    },
+    company: {
         type: String,
         required: [true, "choose category"],
         trim: true,
+        maxlength: [20, "Company name cannot be more than 20 characters"],
+        enum: { values: ['nike', 'terraria', 'yeezy', 'adidas', 'puma'], message: '{VALUE} not supported' },
     },
-    completed: {
-        type: Boolean,
-        default: false
-    },
+    
 })
 
 module.exports = mongoose.model('Product',ProductSchema);

@@ -3,7 +3,7 @@ const loadingDOM = document.querySelector(".loading-text")
 const formDOM = document.querySelector(".product-form")
 const productInputDOM = document.querySelector(".product-input")
 const formAlertDOM = document.querySelector(".form-alert")
-//  Load tasks from api/product
+//  Load product from api/product
 const showProducts = async ()=> {
     loadingDOM.style.visibility = "visible"
     try {
@@ -39,7 +39,7 @@ const showProducts = async ()=> {
 
 showProducts();
 
-//  delete task /api/tasks/:id
+//  delete product /api/products/:id
 
 productsDOM.addEventListener("click", async (e) => {
     const el = e.target;
@@ -62,11 +62,11 @@ formDOM.addEventListener("submit", async (e) => {
     const name = productInputDOM.value
 
     try {
-        await axios.post("/api/v1/tasks", {name})
+        await axios.post("/api/v1/products", {name})
         showProducts()
         productInputDOM.value = ""
         formAlertDOM.style.display = "block"
-        formAlertDOM.textContent = "success! task added"
+        formAlertDOM.textContent = "success! product added"
         formAlertDOM.classList.add("text-success")
     } catch(error){
         formAlertDOM.style.display = "block"
