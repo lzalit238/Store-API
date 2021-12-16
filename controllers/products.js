@@ -33,7 +33,7 @@ const updateProduct = async(req,res) => {
     console.log(req.body)
     try {
         // const task = await Task.findByIdAndUpdate(req.body)
-        const product = await Product.findByIdAndUpdate(req.params.id, {name: req.body.name, completed: req.body.completed})
+        const product = await Product.findByIdAndUpdate(req.params.id, {name: req.body.name, featured: req.body.featured})
         res.status(200).json({product})
     } catch(error) {
         res.status(500).json();
